@@ -1,4 +1,5 @@
 import { forwardRef } from 'react';
+// import { useResumeStore } from '../store/ResumeStore';
 
 // Resume section title component - reduced spacing
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
@@ -86,6 +87,23 @@ const SkillCategory = ({
 // Main resume template
 const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
   (props, ref) => {
+
+//making the values dynamic
+    // const {firstName, lastName, email, phone, address, link, summary, skills, experience, education, projects, certifications} = useResumeStore((state) => ({
+    //   firstName: state.firstName,
+    //   lastName: state.lastName,
+    //   email: state.email,
+    //   phone: state.phone,
+    //   address: state.address,
+    //   link: state.link,
+    //   summary: state.summary,
+    //   skills: state.skills,
+    //   experience: state.experience,
+    //   education: state.education,
+    //   projects: state.projects,
+    //   certifications: state.certifications
+    // }));
+
     // Sample data - in a real application, this would be passed as props
     const resumeData = {
       personalInfo: {

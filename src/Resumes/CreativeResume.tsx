@@ -1,147 +1,182 @@
-import { forwardRef } from 'react';
+import React from 'react';
 
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => (
-  <div className="mb-6">
-    <h2 className="text-lg font-semibold text-indigo-600 border-b border-gray-300 mb-2">
-      {title}
-    </h2>
-    {children}
-  </div>
-);
-
-const Experience = ({ title, company, period, location, descriptions } : {title : string, company : string, period : string, location : string, descriptions : string[]}) => (
-  <div className="mb-4">
-    <div className="flex justify-between items-center">
-      <div>
-        <h3 className="font-medium text-gray-900">{title}</h3>
-        <p className="text-sm text-gray-700">{company} – {location}</p>
-      </div>
-      <span className="text-sm text-gray-500">{period}</span>
-    </div>
-    <ul className="list-disc text-sm text-gray-700 ml-5 mt-1 space-y-1">
-      {descriptions.map((d, i) => <li key={i}>{d}</li>)}
-    </ul>
-  </div>
-);
-
-const TemplateCreative = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>((props, ref) => {
-  const resume = {
-    personal: {
-      name: 'Jane Doe',
-      title: 'Full Stack Developer',
-      email: 'jane.doe@example.com',
-      phone: '(123) 456-7890',
-      linkedin: 'linkedin.com/in/janedoe',
-      location: 'New York, NY',
+const data = {
+  name: 'Jane Doe',
+  title: 'Creative Designer',
+  summary:
+    'Innovative and deadline-driven Graphic Designer with 3+ years of experience designing and developing user-centered digital/print marketing material from initial concept to final, polished deliverable.',
+  contact: {
+    email: 'jane.doe@example.com',
+    phone: '+1234567890',
+    location: 'New York, USA',
+  },
+  skills: ['Adobe Creative Suite', 'UI/UX Design', 'Illustration', 'Branding'],
+  education: [
+    {
+      school: 'Parsons School of Design',
+      degree: 'BFA in Graphic Design',
+      startYear: '2015',
+      endYear: '2019',
     },
-    summary: 'Creative and detail-oriented developer with experience in full stack projects across e-commerce and productivity tools.',
-    experience: [
-      {
-        title: 'Software Engineer',
-        company: 'Tech Solutions',
-        period: '2021 – Present',
-        location: 'Remote',
-        descriptions: ['Built scalable REST APIs using FastAPI', 'Led frontend redesign using Tailwind CSS', 'Improved load time by 40%']
-      }, 
-          {
-        title: 'Software Engineer Intern',
-        company: 'Innovatech',
-        period: '2020 – 2021',
-        location: 'Remote',
-        descriptions: ['Built scalable REST APIs using FastAPI', 'Led frontend redesign using Tailwind CSS', 'Improved load time by 40%']
-      }
-    ],
-    education: [
-      {
-        degree: 'BSc Computer Science',
-        institution: 'NYU',
-        period: '2017 – 2021',
-        location: 'New York, NY'
-      }
-    ],
-    skills: [
-      { category: 'Frontend', skills: ['React', 'Tailwind', 'Next.js'] },
-      { category: 'Backend', skills: ['FastAPI', 'Node.js', 'Express'] },
-      { skills: ['Git', 'Docker', 'Vercel'] } // Without category
-    ],
-    certifications: ['AWS Developer Associate', 'Google Web Dev Certificate'],
-    projects: [
-      { name: 'AI Resume Builder', description: 'Generated resumes with GPT & React. Open source on GitHub.' },
-      { name: 'Crypto Tracker', description: 'Tracked real-time crypto data with Chart.js and WebSockets.' },
-      {name : 'E-commerce Platform', description: 'Developed a full-stack e-commerce platform with Next.js and FastAPI.'}
-    ]
-  };
+  ],
+  projects: [
+    {
+      title: 'Brand Identity for XYZ Corp',
+      description: 'Developed a comprehensive brand identity including logo, color palette, and typography.',
+    },
+    {
+      title: 'Website Redesign for ABC Inc',
+      description: 'Led the redesign of the company website, improving user experience and increasing traffic by 30%.',
+    },
+  ],
+  certifications: ["Adobe Certified Expert", "UX Design Certification"],
+  experience: [
+    {
+      company: 'Creative Studio',
+      position: 'Lead Graphic Designer',
+      startDate: 'Jan 2020',
+      endDate: 'Present',
+      description: [
+        'Led the design of a new visual identity for a high-profile client, increasing brand recognition by 40%.',
+        'Mentored 3 junior designers and streamlined the team workflow.',
+      ],
+    },
+    {
+      company: 'Freelance',
+      position: 'Graphic Designer',
+      startDate: 'Jun 2018',
+      endDate: 'Dec 2019',
+      description: [
+        'Worked with startups to develop branding and marketing materials.',
+        'Created over 30 design projects including logos, brochures, and websites.',
+      ],
+    },
+  ],
+};
 
+const TemplateCreative = React.forwardRef<HTMLDivElement>((_, ref) => {
   return (
     <div
       ref={ref}
-      {...props}
-      className="w-[900px] h-[1200px] bg-white shadow-md border border-gray-300 grid grid-cols-4 font-sans text-gray-900"
+      className="w-full max-w-4xl bg-white font-sans text-gray-900 p-8"
+      style={{ 
+        printColorAdjust: 'exact',
+        WebkitPrintColorAdjust: 'exact',
+        fontSize: '12px',
+        lineHeight: '1.4'
+      }}
     >
-      {/* Sidebar */}
-      <div className="col-span-1 bg-indigo-50 p-8 flex flex-col items-start">
-        <h1 className="text-2xl font-bold text-indigo-800">{resume.personal.name}</h1>
-        <h2 className="text-sm font-medium text-indigo-600 mb-4">{resume.personal.title}</h2>
-        <div className="text-sm text-gray-700 space-y-2">
-          <p>{resume.personal.email}</p>
-          <p>{resume.personal.phone}</p>
-          <p>{resume.personal.linkedin}</p>
-          <p>{resume.personal.location}</p>
+      {/* Header */}
+      <div className="text-center mb-6 pb-4 border-b-2 border-blue-600">
+        <h1 className="text-3xl font-bold text-gray-900 mb-1">{data.name}</h1>
+        <p className="text-lg text-blue-600 font-medium mb-3">{data.title}</p>
+        <div className="flex justify-center items-center space-x-4 text-sm text-gray-600">
+          <span>{data.contact.email}</span>
+          <span>•</span>
+          <span>{data.contact.phone}</span>
+          <span>•</span>
+          <span>{data.contact.location}</span>
         </div>
       </div>
 
-      {/* Main Content */}
-      <div className="col-span-3 p-8 mb-0 space-y-6">
-        <Section title="Summary">
-          <p className="text-sm text-gray-800">{resume.summary}</p>
-        </Section>
+      {/* Professional Summary */}
+      <div className="mb-6">
+        <h2 className="text-lg font-bold text-blue-600 mb-2 uppercase tracking-wide border-b border-blue-200 pb-1">
+          Professional Summary
+        </h2>
+        <p className="text-sm text-gray-700 leading-relaxed">{data.summary}</p>
+      </div>
 
-        <Section title="Projects">
-          {resume.projects.map((p, i) => (
-            <div key={i} className="mb-2">
-              <strong>{p.name}</strong>: <span className="text-sm">{p.description}</span>
+      {/* Professional Experience */}
+      <div className="mb-6">
+        <h2 className="text-lg font-bold text-blue-600 mb-3 uppercase tracking-wide border-b border-blue-200 pb-1">
+          Professional Experience
+        </h2>
+        {data.experience.map((exp, index) => (
+          <div key={index} className="mb-4">
+            <div className="flex justify-between items-start mb-1">
+              <div>
+                <h3 className="text-base font-bold text-gray-900">{exp.position}</h3>
+                <p className="text-sm font-medium text-gray-700">{exp.company}</p>
+              </div>
+              <p className="text-sm text-gray-600 font-medium">
+                {exp.startDate} - {exp.endDate}
+              </p>
             </div>
-          ))}
-        </Section>
+            <ul className="mt-2 space-y-1">
+              {exp.description.map((desc, i) => (
+                <li key={i} className="text-sm text-gray-700 flex items-start">
+                  <span className="mr-2 mt-1.5 w-1 h-1 bg-blue-600 rounded-full flex-shrink-0"></span>
+                  <span>{desc}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
 
-        <Section title="Certifications">
-          <ul className="list-disc text-sm ml-5 text-gray-700">
-            {resume.certifications.map((c, i) => <li key={i}>{c}</li>)}
+      {/* Skills and Education in two columns */}
+      <div className="grid grid-cols-2 gap-8">
+        {/* Skills */}
+        <div>
+          <h2 className="text-lg font-bold text-blue-600 mb-3 uppercase tracking-wide border-b border-blue-200 pb-1">
+            Skills
+          </h2>
+          <ul className="space-y-1">
+            {data.skills.map((skill, index) => (
+              <li key={index} className="text-sm text-gray-700 flex items-center">
+                <span className="mr-2 w-1 h-1 bg-blue-600 rounded-full flex-shrink-0"></span>
+                {skill}
+              </li>
+            ))}
           </ul>
-        </Section>
+        </div>
 
-        <Section title="Experience">
-          {resume.experience.map((e, i) => <Experience key={i} {...e} />)}
-        </Section>
-
-        <Section title="Education">
-          {resume.education.map((edu, i) => (
-            <div key={i} className="mb-2">
-              <div className="flex justify-between text-sm">
-                <div className="font-medium">{edu.degree}</div>
-                <div className="text-gray-500">{edu.period}</div>
-              </div>
-              <div className="text-sm text-gray-700">{edu.institution} – {edu.location}</div>
+        {/* Education */}
+        <div>
+          <h2 className="text-lg font-bold text-blue-600 mb-3 uppercase tracking-wide border-b border-blue-200 pb-1">
+            Education
+          </h2>
+          {data.education.map((edu, index) => (
+            <div key={index}>
+              <h3 className="text-sm font-bold text-gray-900">{edu.degree}</h3>
+              <p className="text-sm text-gray-700 font-medium">{edu.school}</p>
+              <p className="text-sm text-gray-600">
+                {edu.startYear} - {edu.endYear}
+              </p>
             </div>
           ))}
-        </Section>
-
-        <Section title="Skills">
-          {resume.skills.map((s, i) =>
-            s.category ? (
-              <div key={i} className="mb-2">
-                <strong className="text-sm text-gray-700">{s.category}</strong>
-                <p className="text-sm text-gray-800">{s.skills.join(', ')}</p>
-              </div>
-            ) : (
-              <p key={i} className="text-sm text-gray-800">{s.skills.join(', ')}</p>
-            )
-          )}
-        </Section>
+        </div>
+            <div>
+          <h2 className="text-lg font-bold text-blue-600 mb-3 uppercase tracking-wide border-b border-blue-200 pb-1">
+            Projects
+          </h2>
+          <ul className="space-y-1">
+            {data.projects.map((project, index) => (
+              <li key={index} className="text-sm text-gray-700 flex items-center">
+                {project.title}: {project.description}  
+              </li>
+            ))}
+          </ul>
+        </div>
+           <div>
+          <h2 className="text-lg font-bold text-blue-600 mb-3 uppercase tracking-wide border-b border-blue-200 pb-1">
+            Certifications
+          </h2>
+          <ul className="space-y-1">
+            {data.certifications.map((Certification, index) => (
+              <li key={index} className="text-sm text-gray-700 flex items-center">
+                <span className="mr-2 w-1 h-1 bg-blue-600 rounded-full flex-shrink-0"></span>
+                {Certification}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
 });
 
 TemplateCreative.displayName = 'TemplateCreative';
+
 export default TemplateCreative;

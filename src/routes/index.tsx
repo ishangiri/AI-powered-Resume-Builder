@@ -38,7 +38,7 @@ function App() {
         <div className="flex flex-col items-center gap-4 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
           <div className="w-auto h-auto border border-gray-200 overflow-hidden bg-white hover:scale-150 transition-transform">
             <img 
-              src="/ResumeTemplate1.pdf.png" 
+              src="/ModernResume.pdf.svg" 
               alt="Template 2" 
               className="w-96 h-96 object-contain"
             />
@@ -58,7 +58,7 @@ function App() {
         <div className="flex flex-col items-center gap-4 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
           <div className="w-96 h-96 border border-gray-200 overflow-hidden bg-white hover:scale-150 transition-transform">
             <img 
-              src="/api/placeholder/320/400" 
+              src="/creativeResume.svg" 
               alt="Template 3" 
               className="w-full h-full object-contain"
             />

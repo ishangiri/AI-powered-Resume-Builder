@@ -1,9 +1,57 @@
-import React from 'react'
+import { create } from 'zustand'
 
-const ResumeStore = () => {
-  return (
-    <div>ResumeStore</div>
-  )
+
+
+type ResumeStore  = {
+  firstName : string,
+  lastName : string,
+  email : string,
+  phone : string,
+  address : string,
+  link : string,
+  summary : string,
+  skills : string[],
+  experience : string[],
+  education : string[],
+  projects : string[],
+  certifications : string[],
+  setFirstName: (firstName: string) => void,
+  setLastName: (lastName: string) => void,
+  setEmail: (email: string) => void,
+  setPhone: (phone: string) => void,
+  setAddress: (address: string) => void,
+  setLink: (link: string) => void,
+  setSummary: (summary: string) => void,
+  setSkills: (skills: string[]) => void,
+  setExperience: (experience: string[]) => void,
+  setEducation: (education: string[]) => void,
+  setProjects: (projects: string[]) => void,
+  setCertifications: (certifications: string[]) => void,
 }
 
-export default ResumeStore
+export const useResumeStore = create<ResumeStore>((set) => ({
+  firstName: '',
+  lastName: '',
+  email: '',
+  phone: '',
+  address: '',
+  link: '',
+  summary: '',
+  skills: [],
+  experience: [],
+  education: [],
+  projects: [],
+  certifications: [],
+  setFirstName: (firstName) => set(() => ({ firstName })),
+  setLastName: (lastName) => set(() => ({ lastName })),
+  setEmail: (email) => set(() => ({ email })),
+  setPhone: (phone) => set(() => ({ phone })),
+  setAddress: (address) => set(() => ({ address })),
+  setLink: (link) => set(() => ({ link })),
+  setSummary: (summary) => set(() => ({ summary })),
+  setSkills: (skills) => set(() => ({ skills })),
+  setExperience: (experience) => set(() => ({ experience })),
+  setEducation: (education) => set(() => ({ education })),
+  setProjects: (projects) => set(() => ({ projects })),
+  setCertifications: (certifications) => set(() => ({ certifications })),
+}))

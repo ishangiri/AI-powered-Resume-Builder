@@ -23,5 +23,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "Resumes/ModernResume.tsx", "Resumes/ProfessionalResume.tsx"]
+  "include": ["src", "src/Resumes/ModernResume.tsx", "src/Resumes/ProfessionalResume.tsx"]
 }
