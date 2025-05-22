@@ -1,13 +1,13 @@
 import { forwardRef } from 'react';
 
-// Resume section title component
+// Resume section title component - reduced spacing
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
-  <div className="text-lg font-bold text-gray-800 uppercase tracking-wider border-b-2 border-blue-500 pb-1 mb-3">
+  <div className="text-base font-bold text-gray-800 uppercase tracking-wider border-b border-blue-500 pb-1 mb-2">
     {children}
   </div>
 );
 
-// Experience item component
+// Experience item component - condensed layout
 const ExperienceItem = ({
   title,
   company,
@@ -21,18 +21,18 @@ const ExperienceItem = ({
   location: string;
   descriptions: string[];
 }) => (
-  <div className="mb-4">
+  <div className="mb-3">
+    <div className="flex justify-between items-baseline">
+      <div className="font-semibold text-gray-800 text-sm">{title}</div>
+      <div className="text-xs text-gray-600">{period}</div>
+    </div>
     <div className="flex justify-between items-baseline mb-1">
-      <div className="font-semibold text-gray-800">{title}</div>
-      <div className="text-sm text-gray-600">{period}</div>
+      <div className="font-medium text-gray-700 text-sm">{company}</div>
+      <div className="text-xs text-gray-600">{location}</div>
     </div>
-    <div className="flex justify-between items-baseline mb-2">
-      <div className="font-medium text-gray-700">{company}</div>
-      <div className="text-sm text-gray-600">{location}</div>
-    </div>
-    <ul className="list-disc ml-5 space-y-1">
+    <ul className="list-disc ml-4 space-y-0">
       {descriptions.map((desc, index) => (
-        <li key={index} className="text-sm text-gray-700">
+        <li key={index} className="text-xs text-gray-700 leading-tight">
           {desc}
         </li>
       ))}
@@ -40,7 +40,7 @@ const ExperienceItem = ({
   </div>
 );
 
-// Education item component
+// Education item component - more compact
 const EducationItem = ({
   degree,
   institution,
@@ -54,20 +54,20 @@ const EducationItem = ({
   location: string;
   details?: string;
 }) => (
-  <div className="mb-4">
-    <div className="flex justify-between items-baseline mb-1">
-      <div className="font-semibold text-gray-800">{degree}</div>
-      <div className="text-sm text-gray-600">{period}</div>
+  <div className="mb-2">
+    <div className="flex justify-between items-baseline">
+      <div className="font-semibold text-gray-800 text-sm">{degree}</div>
+      <div className="text-xs text-gray-600">{period}</div>
     </div>
-    <div className="flex justify-between items-baseline mb-1">
-      <div className="font-medium text-gray-700">{institution}</div>
-      <div className="text-sm text-gray-600">{location}</div>
+    <div className="flex justify-between items-baseline">
+      <div className="font-medium text-gray-700 text-sm">{institution}</div>
+      <div className="text-xs text-gray-600">{location}</div>
     </div>
-    {details && <div className="text-sm text-gray-700">{details}</div>}
+    {details && <div className="text-xs text-gray-700">{details}</div>}
   </div>
 );
 
-// Skill item component
+// Skill item component - more compact
 const SkillCategory = ({ 
   category, 
   skills 
@@ -75,16 +75,16 @@ const SkillCategory = ({
   category: string; 
   skills: string[] 
 }) => (
-  <div className="mb-3">
-    <div className="font-medium text-gray-700 mb-1">{category}:</div>
-    <div className="text-sm text-gray-700">
+  <div className="mb-2">
+    <div className="font-medium text-gray-700 text-sm">{category}:</div>
+    <div className="text-xs text-gray-700 leading-tight">
       {skills.join(', ')}
     </div>
   </div>
 );
 
 // Main resume template
-const Template1 = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
+const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
   (props, ref) => {
     // Sample data - in a real application, this would be passed as props
     const resumeData = {
@@ -180,21 +180,21 @@ const Template1 = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
       <div
         {...props}
         ref={ref}
-        className="flex flex-col gap-4 p-10 bg-white w-[800px] h-[1100px] font-sans text-gray-800"
+        className="flex flex-col gap-3 p-6 bg-white w-[800px] h-[1200px] font-sans text-gray-800"
       >
         {/* Header Section */}
-        <div className="flex flex-col gap-3 mb-2">
-          <div className="text-3xl font-bold text-gray-900 text-center">
+        <div className="flex flex-col gap-2 mb-1">
+          <div className="text-2xl font-bold text-gray-900 text-center">
             {resumeData.personalInfo.name}
           </div>
-          <div className="flex flex-row items-center justify-center gap-5 text-sm text-gray-600">
-            <p>{resumeData.personalInfo.email}</p>
-            <p>•</p>
-            <p>{resumeData.personalInfo.phone}</p>
-            <p>•</p>
-            <p>{resumeData.personalInfo.linkedin}</p>
-            <p>•</p>
-            <p>{resumeData.personalInfo.location}</p>
+          <div className="flex flex-row items-center justify-center gap-4 text-xs text-gray-600">
+            <span>{resumeData.personalInfo.email}</span>
+            <span>•</span>
+            <span>{resumeData.personalInfo.phone}</span>
+            <span>•</span>
+            <span>{resumeData.personalInfo.linkedin}</span>
+            <span>•</span>
+            <span>{resumeData.personalInfo.location}</span>
           </div>
         </div>
         
@@ -203,7 +203,7 @@ const Template1 = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
         {/* Summary Section */}
         <div>
           <SectionTitle>Professional Summary</SectionTitle>
-          <p className="text-sm text-gray-700 mb-4">
+          <p className="text-xs text-gray-700 mb-2 leading-tight">
             {resumeData.summary}
           </p>
         </div>
@@ -253,11 +253,11 @@ const Template1 = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
         </div>
         
         {/* Certifications Section */}
-        {/* <div>
+        <div>
           <SectionTitle>Certifications</SectionTitle>
-          <ul className="list-disc ml-5 space-y-1 mb-4">
+          <ul className="list-disc ml-4 space-y-0 mb-2">
             {resumeData.certifications.map((cert, index) => (
-              <li key={index} className="text-sm text-gray-700">
+              <li key={index} className="text-xs text-gray-700">
                 {cert}
               </li>
             ))}
@@ -265,21 +265,21 @@ const Template1 = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
         </div>
         
         {/* Projects Section */}
-        {/* <div>
+        <div>
           <SectionTitle>Projects</SectionTitle>
-          <div className="space-y-2 mb-4">
+          <div className="space-y-1">
             {resumeData.projects.map((project, index) => (
-              <div key={index} className="text-sm">
+              <div key={index} className="text-xs">
                 <span className="font-medium text-gray-800">{project.name}: </span>
                 <span className="text-gray-700">{project.description}</span>
               </div>
             ))}
           </div>
-        </div> */}
-     </div>
+        </div>
+      </div>
     );
   }
 );
 
-Template1.displayName = 'ResumeTemplate';
-export default Template1;
+ProfessionalTemplate.displayName = 'ProfessionalTemplate';
+export default ProfessionalTemplate;
