@@ -1,25 +1,46 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useReactToPrint } from 'react-to-print';
-// import ProfessionalTemplate from '../Resumes/ProfessionalResume';
-import  ResumeTemplate    from '../Resumes/MCreativeResume';
+import ProfessionalTemplate from '../../Resumes/ProfessionalResume';
+import ModernTemplate from '../../Resumes/ModernResume';
+import TemplateCreative from '../../Resumes/CreativeResume';
+import  ResumeTemplate    from '../../Resumes/MCreativeResume';
 import { useRef } from 'react';
-import ResumeForm from '../components/Form';
+import PersonalDetailsForm from '../../components/PersonalDetailsForm';
+import { useParams } from '@tanstack/react-router';
 
-function Template1Page() {
+function Resumepage() {
   const contentRef = useRef<HTMLDivElement>(null);
   const reactToPrintFn = useReactToPrint({ contentRef });
+
+  const { resumeID } = useParams({ from: '/Resume/$resumeID' });
+
+
+  const chooseResumeTemplate = () => {
+    switch (resumeID) {
+      case 'Professional':
+        return <ProfessionalTemplate  ref={contentRef} />;
+      case 'Modern':
+        return <ModernTemplate ref={contentRef} />;
+      case 'Creative':
+        return <TemplateCreative ref={contentRef} />;
+      case 'Mcreative':
+        return <ResumeTemplate ref={contentRef} />;
+        default:
+        return <div className="text-center text-gray-500">No template selected</div>;
+    }
+  }
   
   const onSubmit = async () => {
     console.log("Form submitted");
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex  bg-gray-50">
       {/* Left Side - Form */}
       <div className="w-1/2 p-6 bg-white shadow-lg overflow-y-auto">
         <div className="max-w-lg mx-auto">
           <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit Resume</h1>
-          <ResumeForm onSubmit={onSubmit} />
+          <PersonalDetailsForm onSubmit={onSubmit} />
           
           {/* Print Button */}
           <div className="mt-8 pt-6 border-t border-gray-200">
@@ -43,9 +64,9 @@ function Template1Page() {
           
           {/* Resume Container - fits exactly in viewport */}
           <div className="flex-1 bg-white rounded-lg shadow-xl overflow-hidden flex items-center justify-center">
-            <div className="transform scale-50 origin-center" style={{ width: '200%', height: '200%' }}>
-              <div className="w-full h-full flex items-center justify-center">
-                <ResumeTemplate ref={contentRef} />
+            <div style={{ width: '100%', height: '100%' }}>
+              <div className="w-full h-full flex items-center">
+              {chooseResumeTemplate()}
               </div>
             </div>
           </div>
@@ -55,6 +76,6 @@ function Template1Page() {
   );
 }
 
-export const Route = createFileRoute('/Template1')({
-  component: Template1Page,
+export const Route = createFileRoute('/Resume/$resumeID')({
+  component: Resumepage,
 });

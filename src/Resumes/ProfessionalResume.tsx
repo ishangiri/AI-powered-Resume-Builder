@@ -1,5 +1,8 @@
 import { forwardRef } from 'react';
-// import { useResumeStore } from '../store/ResumeStore';
+import { useResumeStore } from '../store/ResumeStore';
+
+
+
 
 // Resume section title component - reduced spacing
 const SectionTitle = ({ children }: { children: React.ReactNode }) => (
@@ -88,30 +91,21 @@ const SkillCategory = ({
 const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
   (props, ref) => {
 
-//making the values dynamic
-    // const {firstName, lastName, email, phone, address, link, summary, skills, experience, education, projects, certifications} = useResumeStore((state) => ({
-    //   firstName: state.firstName,
-    //   lastName: state.lastName,
-    //   email: state.email,
-    //   phone: state.phone,
-    //   address: state.address,
-    //   link: state.link,
-    //   summary: state.summary,
-    //   skills: state.skills,
-    //   experience: state.experience,
-    //   education: state.education,
-    //   projects: state.projects,
-    //   certifications: state.certifications
-    // }));
+ const firstName = useResumeStore(state => state.firstName);
+    const lastName = useResumeStore(state => state.lastName);
+    const email = useResumeStore(state => state.email);
+    const phone = useResumeStore(state => state.phone);
+    const address = useResumeStore(state => state.address);
+    const link = useResumeStore(state => state.link);
 
     // Sample data - in a real application, this would be passed as props
     const resumeData = {
       personalInfo: {
-        name: "Jane Doe",
-        email: "jane.doe@example.com",
-        phone: "(123) 456-7890",
-        linkedin: "linkedin.com/in/janedoe",
-        location: "New York, NY"
+        name: `${firstName} ${lastName}`,
+        email: email,
+        phone: phone,
+        linkedin: link,
+        location: address
       },
       summary: "Experienced software developer with 5+ years of expertise in building scalable web applications. Strong focus on front-end development with React and TypeScript. Passionate about creating elegant, user-friendly interfaces and maintaining high code quality.",
       experience: [
@@ -192,8 +186,7 @@ const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivE
           description: "Developed a Kanban-style productivity tool with drag-and-drop functionality"
         }
       ]
-    };
-
+  }
     return (
       <div
         {...props}

@@ -11,34 +11,20 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as Template3Import } from './routes/Template3'
-import { Route as Template2Import } from './routes/Template2'
-import { Route as Template1Import } from './routes/Template1'
 import { Route as IndexImport } from './routes/index'
+import { Route as ResumeResumeIDImport } from './routes/Resume/$resumeID'
 
 // Create/Update Routes
-
-const Template3Route = Template3Import.update({
-  id: '/Template3',
-  path: '/Template3',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const Template2Route = Template2Import.update({
-  id: '/Template2',
-  path: '/Template2',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const Template1Route = Template1Import.update({
-  id: '/Template1',
-  path: '/Template1',
-  getParentRoute: () => rootRoute,
-} as any)
 
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ResumeResumeIDRoute = ResumeResumeIDImport.update({
+  id: '/Resume/$resumeID',
+  path: '/Resume/$resumeID',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -53,25 +39,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/Template1': {
-      id: '/Template1'
-      path: '/Template1'
-      fullPath: '/Template1'
-      preLoaderRoute: typeof Template1Import
-      parentRoute: typeof rootRoute
-    }
-    '/Template2': {
-      id: '/Template2'
-      path: '/Template2'
-      fullPath: '/Template2'
-      preLoaderRoute: typeof Template2Import
-      parentRoute: typeof rootRoute
-    }
-    '/Template3': {
-      id: '/Template3'
-      path: '/Template3'
-      fullPath: '/Template3'
-      preLoaderRoute: typeof Template3Import
+    '/Resume/$resumeID': {
+      id: '/Resume/$resumeID'
+      path: '/Resume/$resumeID'
+      fullPath: '/Resume/$resumeID'
+      preLoaderRoute: typeof ResumeResumeIDImport
       parentRoute: typeof rootRoute
     }
   }
@@ -81,47 +53,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/Template1': typeof Template1Route
-  '/Template2': typeof Template2Route
-  '/Template3': typeof Template3Route
+  '/Resume/$resumeID': typeof ResumeResumeIDRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/Template1': typeof Template1Route
-  '/Template2': typeof Template2Route
-  '/Template3': typeof Template3Route
+  '/Resume/$resumeID': typeof ResumeResumeIDRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/Template1': typeof Template1Route
-  '/Template2': typeof Template2Route
-  '/Template3': typeof Template3Route
+  '/Resume/$resumeID': typeof ResumeResumeIDRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/Template1' | '/Template2' | '/Template3'
+  fullPaths: '/' | '/Resume/$resumeID'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/Template1' | '/Template2' | '/Template3'
-  id: '__root__' | '/' | '/Template1' | '/Template2' | '/Template3'
+  to: '/' | '/Resume/$resumeID'
+  id: '__root__' | '/' | '/Resume/$resumeID'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  Template1Route: typeof Template1Route
-  Template2Route: typeof Template2Route
-  Template3Route: typeof Template3Route
+  ResumeResumeIDRoute: typeof ResumeResumeIDRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  Template1Route: Template1Route,
-  Template2Route: Template2Route,
-  Template3Route: Template3Route,
+  ResumeResumeIDRoute: ResumeResumeIDRoute,
 }
 
 export const routeTree = rootRoute
@@ -135,22 +97,14 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/Template1",
-        "/Template2",
-        "/Template3"
+        "/Resume/$resumeID"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/Template1": {
-      "filePath": "Template1.tsx"
-    },
-    "/Template2": {
-      "filePath": "Template2.tsx"
-    },
-    "/Template3": {
-      "filePath": "Template3.tsx"
+    "/Resume/$resumeID": {
+      "filePath": "Resume/$resumeID.tsx"
     }
   }
 }

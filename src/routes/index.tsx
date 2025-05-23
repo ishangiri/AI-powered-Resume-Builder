@@ -26,7 +26,8 @@ function App() {
           <div className="flex flex-col items-center gap-2">
             <h3 className="text-lg font-semibold text-gray-800">Professional Template</h3>
             <Link 
-              to="/Template1" 
+              params={{ resumeID: 'Professional' }}
+              to="/Resume/$resumeID" 
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
             >
               Choose Template
@@ -46,7 +47,8 @@ function App() {
           <div className="flex flex-col items-center gap-2">
             <h3 className="text-lg font-semibold text-gray-800">Modern Template</h3>
             <Link 
-              to="/Template2" 
+              params={{ resumeID: 'Modern' }}
+              to="/Resume/$resumeID" 
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
             >
               Choose Template
@@ -66,7 +68,8 @@ function App() {
           <div className="flex flex-col items-center gap-2">
             <h3 className="text-lg font-semibold text-gray-800">Creative Template</h3>
             <Link 
-              to="/Template3" 
+              params={{ resumeID: 'Creative' }}
+              to="/Resume/$resumeID" 
               className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
             >
               Choose Template
@@ -74,6 +77,25 @@ function App() {
           </div>
         </div>
       </div>
+        <div className="flex flex-col items-center gap-4 p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow">
+          <div className="w-96 h-96 border border-gray-200 overflow-hidden bg-white hover:scale-150 transition-transform">
+            <img 
+              src="/creativeResume.svg" 
+              alt="Template 3" 
+              className="w-full h-full object-contain"
+            />
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <h3 className="text-lg font-semibold text-gray-800">Creative Template</h3>
+            <Link 
+              params={{ resumeID: 'Mcreative' }}
+              to="/Resume/$resumeID" 
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            >
+              Choose Template
+            </Link>
+          </div>
+        </div>
     </div>
   );
 }

@@ -64,7 +64,15 @@ const ResumeTemplate =  React.forwardRef<HTMLDivElement>((_, ref) => {
       },
       {
         title: "Data Analyst",
-        period: "03/2008 - 05/2012"
+        period: "03/2008 - 05/2012",
+           location: "Thousand Oaks, CA",
+        achievements: [
+          "Implemented a strategic data integration solution that streamlined operations and saved the company $200K annually.",
+          "Managed a portfolio of data analytics projects, ensuring alignment with business goals and continuous delivery of value.",
+          "Developed user stories and use cases for BI solutions, improving data-driven decision-making across the organization.",
+          "Enhanced existing architecture to more robust system, increasing data processing speed by 30%.",
+          "Led the documentation efforts for system requirements using JIRA, enhancing team productivity and project tracking."
+        ]
       }
     ]
   };
