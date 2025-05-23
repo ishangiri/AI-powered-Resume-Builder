@@ -91,7 +91,7 @@ const SkillCategory = ({
 const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivElement>>(
   (props, ref) => {
 
- const firstName = useResumeStore(state => state.firstName);
+    const firstName = useResumeStore(state => state.firstName);
     const lastName = useResumeStore(state => state.lastName);
     const email = useResumeStore(state => state.email);
     const phone = useResumeStore(state => state.phone);

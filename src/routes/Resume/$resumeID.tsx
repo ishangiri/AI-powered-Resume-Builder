@@ -5,8 +5,9 @@ import ModernTemplate from '../../Resumes/ModernResume';
 import TemplateCreative from '../../Resumes/CreativeResume';
 import  ResumeTemplate    from '../../Resumes/MCreativeResume';
 import { useRef } from 'react';
-import PersonalDetailsForm from '../../components/PersonalDetailsForm';
+import ResumeForm from '@/components/ResumeForm';
 import { useParams } from '@tanstack/react-router';
+import Button from '@/components/ui/Button';
 
 function Resumepage() {
   const contentRef = useRef<HTMLDivElement>(null);
@@ -37,19 +38,13 @@ function Resumepage() {
   return (
     <div className="flex  bg-gray-50">
       {/* Left Side - Form */}
-      <div className="w-1/2 p-6 bg-white shadow-lg overflow-y-auto">
+      <div className="w-full p-6 bg-white shadow-lg overflow-y-auto">
         <div className="max-w-lg mx-auto">
-          <h1 className="text-2xl font-bold text-gray-800 mb-6">Edit Resume</h1>
-          <PersonalDetailsForm onSubmit={onSubmit} />
+          <ResumeForm onSubmit={onSubmit} />
           
           {/* Print Button */}
           <div className="mt-8 pt-6 border-t border-gray-200">
-            <button
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors duration-200 shadow-md"
-              onClick={reactToPrintFn}
-            >
-              Print Resume
-            </button>
+              <Button onSubmit={reactToPrintFn} text="Generate PDF" />
           </div>
         </div>
       </div>
