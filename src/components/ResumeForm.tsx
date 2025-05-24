@@ -15,19 +15,19 @@ const ResumeForm = ({ onSubmit }: { onSubmit: () => void }) => {
 
   const toggleItem = (value: string) => {
     setOpenItems(prev =>
-      prev.includes(value) ? prev.filter(item => item !== value) : [...prev, value]
+      prev.includes(value) ? prev.filter(item => item !== value) : [value]
     );
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="min-w-5xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-gray-800 mb-2">Resume Builder</h1>
           <p className="text-gray-600">Create your professional resume in minutes</p>
         </div>
 
-        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-100 space-y-6">
+        <div className="bg-white rounded-xl shadow-xl p-8 border border-gray-100 space-y-8">
           <AccordionItem value="personal-details" title="Personal Details" icon={User} openItems={openItems} toggleItem={toggleItem}>
             <PersonalDetails />
           </AccordionItem>

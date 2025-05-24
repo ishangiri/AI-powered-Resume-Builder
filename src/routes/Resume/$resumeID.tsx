@@ -38,20 +38,20 @@ function Resumepage() {
   return (
     <div className="flex  bg-gray-50">
       {/* Left Side - Form */}
-      <div className="w-full p-6 bg-white shadow-lg overflow-y-auto">
-        <div className="max-w-lg mx-auto">
+        <div className="w-1/2 p-6 bg-white shadow-lg h-screen overflow-y-auto">
+        <div className=" mx-auto">
           <ResumeForm onSubmit={onSubmit} />
-          
+
           {/* Print Button */}
           <div className="mt-8 pt-6 border-t border-gray-200">
-              <Button onSubmit={reactToPrintFn} text="Generate PDF" />
+            <Button onSubmit={reactToPrintFn} text="Generate PDF" />
           </div>
         </div>
       </div>
 
       {/* Right Side - Resume Preview */}
       <div className="w-1/2 bg-gray-100 p-4">
-        <div className="h-full flex flex-col">
+        <div className="max-h-full flex flex-col">
           <div className="mb-2">
             <h2 className="text-lg font-semibold text-gray-700">Live Preview</h2>
             <p className="text-xs text-gray-500">Changes will appear here in real-time</p>

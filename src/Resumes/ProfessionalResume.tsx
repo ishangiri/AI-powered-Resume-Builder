@@ -35,11 +35,9 @@ const ExperienceItem = ({
       <div className="text-xs text-gray-600">{location}</div>
     </div>
     <ul className="list-disc ml-4 space-y-0">
-      {descriptions.map((desc, index) => (
-        <li key={index} className="text-xs text-gray-700 leading-tight">
-          {desc}
+        <li className="text-xs text-gray-700 leading-tight">
+        {descriptions}
         </li>
-      ))}
     </ul>
   </div>
 );
@@ -97,96 +95,101 @@ const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivE
     const phone = useResumeStore(state => state.phone);
     const address = useResumeStore(state => state.address);
     const link = useResumeStore(state => state.link);
+    const experience = useResumeStore(state => state.experience);
+    const summary = useResumeStore(state => state.summary)
+    const education = useResumeStore(state => state.education)
+    const skills = useResumeStore(state => state.skills)
+    const certifications = useResumeStore(state => state.certifications)
+    const projects = useResumeStore(state => state.projects)
 
     // Sample data - in a real application, this would be passed as props
-    const resumeData = {
+       const resumeData = {
       personalInfo: {
-        name: `${firstName} ${lastName}`,
-        email: email,
-        phone: phone,
-        linkedin: link,
-        location: address
+        name: `${firstName || 'John'} ${lastName || 'Doe'}`,
+        email: email || 'abc@gmail.com',
+        phone: phone || '+1 (123) 456-7890',
+        linkedin: link || 'https://www.linkedin.com/in/johndoe',
+        location: address || 'New York, NY'
       },
-      summary: "Experienced software developer with 5+ years of expertise in building scalable web applications. Strong focus on front-end development with React and TypeScript. Passionate about creating elegant, user-friendly interfaces and maintaining high code quality.",
-      experience: [
-        {
-          title: "Senior Frontend Developer",
-          company: "Tech Solutions Inc.",
-          period: "Jan 2021 - Present",
-          location: "New York, NY",
-          descriptions: [
-            "Lead development of a React-based dashboard used by 50,000+ monthly active users",
-            "Implemented responsive design principles, improving mobile user engagement by 35%",
-            "Architected state management solution using Redux, reducing UI bugs by 40%",
-            "Mentored junior developers and conducted code reviews to ensure best practices"
-          ]
-        },
-        {
-          title: "Frontend Developer",
-          company: "Digital Innovations",
-          period: "Mar 2018 - Dec 2020",
-          location: "Boston, MA",
-          descriptions: [
-            "Developed and maintained multiple client-facing web applications using React",
-            "Collaborated with UX designers to implement pixel-perfect interfaces",
-            "Reduced initial load time by 30% through code splitting and lazy loading techniques",
-            "Integrated RESTful APIs and implemented caching strategies for improved performance"
-          ]
-        },
-        {
-          title: "Junior Web Developer",
-          company: "WebTech Solutions",
-          period: "Jun 2016 - Feb 2018",
-          location: "Boston, MA",
-          descriptions: [
-            "Built responsive websites for clients using HTML, CSS, and JavaScript",
-            "Contributed to the development of internal component library",
-            "Assisted in debugging cross-browser compatibility issues"
-          ]
-        }
-      ],
-      education: [
-        {
-          degree: "Bachelor of Science in Computer Science",
-          institution: "University of Technology",
-          period: "2012 - 2016",
-          location: "Boston, MA",
-          details: "GPA: 3.8/4.0, Dean's List, Computer Science Honor Society"
-        }
-      ],
-      skills: [
-        {
-          category: "Programming Languages",
-          skills: ["JavaScript", "TypeScript", "HTML5", "CSS3", "Python"]
-        },
-        {
-          category: "Frameworks & Libraries",
-          skills: ["React", "Redux", "Next.js", "TailwindCSS", "Material UI", "Jest"]
-        },
-        {
-          category: "Tools & Platforms",
-          skills: ["Git", "Webpack", "npm", "AWS", "Docker", "CI/CD", "Jira"]
-        },
-        {
-          category: "Methodologies",
-          skills: ["Agile/Scrum", "Test-Driven Development", "Responsive Design", "Accessibility (WCAG)"]
-        }
-      ],
-      certifications: [
-        "AWS Certified Developer – Associate",
-        "Google Professional Web Developer"
-      ],
-      projects: [
-        {
-          name: "E-commerce Platform",
-          description: "Built a full-featured online store with React, Node.js, and MongoDB"
-        },
-        {
-          name: "Task Management App",
-          description: "Developed a Kanban-style productivity tool with drag-and-drop functionality"
-        }
-      ]
-  }
+      summary:
+        summary ||
+        'Experienced software developer with 5+ years of expertise in building scalable web applications. Strong focus on front-end development with React and TypeScript. Passionate about creating elegant, user-friendly interfaces and maintaining high code quality.',
+      experience:
+        experience.length > 0
+          ? experience.map((exp) => ({
+              title: exp.title || 'Frontend Developer',
+              company: exp.company || 'Tech Company',
+              period: `${exp.startDate || 'Jan 2020'} - ${exp.endDate || 'Present'}`,
+              location: exp.location || 'Remote',
+              descriptions: exp.description?.length
+                ? exp.description
+                : ['Worked on multiple client projects using React and Node.js']
+            }))
+          : [
+              {
+                title: 'Senior Frontend Developer',
+                company: 'Tech Solutions Inc.',
+                period: 'Jan 2021 - Present',
+                location: 'New York, NY',
+                descriptions: [
+                  'Lead development of a React-based dashboard used by 50,000+ monthly active users',
+                  'Implemented responsive design principles, improving mobile user engagement by 35%',
+                  'Architected state management solution using Redux, reducing UI bugs by 40%',
+                  'Mentored junior developers and conducted code reviews to ensure best practices'
+                ]
+              }
+            ],
+      education:
+        education.length > 0
+          ? education
+          : [
+              {
+                degree: 'Bachelor of Science in Computer Science',
+                institution: 'University of Technology',
+                period: '2012 - 2016',
+                location: 'Boston, MA',
+                details: "GPA: 3.8/4.0, Dean's List, Computer Science Honor Society"
+              }
+            ],
+      skills:
+        skills.length > 0
+          ? skills
+          : [
+              {
+                category: 'Programming Languages',
+                skills: ['JavaScript', 'TypeScript', 'HTML5', 'CSS3', 'Python']
+              },
+              {
+                category: 'Frameworks & Libraries',
+                skills: ['React', 'Redux', 'Next.js', 'TailwindCSS', 'Material UI', 'Jest']
+              },
+              {
+                category: 'Tools & Platforms',
+                skills: ['Git', 'Webpack', 'npm', 'AWS', 'Docker', 'CI/CD', 'Jira']
+              },
+              {
+                category: 'Methodologies',
+                skills: ['Agile/Scrum', 'TDD', 'Responsive Design', 'Accessibility (WCAG)']
+              }
+            ],
+      certifications:
+        certifications.length > 0
+          ? certifications
+          : ['AWS Certified Developer – Associate', 'Google Professional Web Developer'],
+      projects:
+        projects.length > 0
+          ? projects
+          : [
+              {
+                name: 'E-commerce Platform',
+                description: 'Built a full-featured online store with React, Node.js, and MongoDB'
+              },
+              {
+                name: 'Task Management App',
+                description: 'Developed a Kanban-style productivity tool with drag-and-drop functionality'
+              }
+            ]
+    };
     return (
       <div
         {...props}
@@ -227,7 +230,7 @@ const ProfessionalTemplate = forwardRef<HTMLDivElement, React.HTMLProps<HTMLDivE
               key={index}
               title={exp.title}
               company={exp.company}
-              period={exp.period}
+              period= {exp.period}
               location={exp.location}
               descriptions={exp.descriptions}
             />

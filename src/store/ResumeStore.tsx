@@ -1,31 +1,64 @@
-  import { create } from 'zustand'
+import { create } from 'zustand'
 
+type Experience = {
+  title: string
+  company: string
+  startDate: string
+  endDate: string
+  description: string[]
+  location: string
+}
 
-type ResumeStore  = {
-  firstName : string,
-  lastName : string,
-  email : string,
-  phone : string,
-  address : string,
-  link : string,
-  summary : string,
-  skills : string[],
-  experience : string[],
-  education : string[],
-  projects : string[],
-  certifications : string[],
-  setFirstName: (firstName: string) => void,
-  setLastName: (lastName: string) => void,
-  setEmail: (email: string) => void,
-  setPhone: (phone: string) => void,
-  setAddress: (address: string) => void,
-  setLink: (link: string) => void,
-  setSummary: (summary: string) => void,
-  setSkills: (skills: string[]) => void,
-  setExperience: (experience: string[]) => void,
-  setEducation: (education: string[]) => void,
-  setProjects: (projects: string[]) => void,
-  setCertifications: (certifications: string[]) => void,
+type ResumeStore = {
+  firstName: string
+  lastName: string
+  email: string
+  phone: string
+  address: string
+  link: string
+  summary: string
+  skills: {
+    category: string
+    skills: string[]
+  }[]
+  experience: Experience[]
+  education: {
+    degree: string
+    institution: string
+    period: string
+    location: string
+    details?: string
+  }[]
+  projects: {
+    name: string
+    description: string
+  }[]
+  certifications: string[]
+  setFirstName: (firstName: string) => void
+  setLastName: (lastName: string) => void
+  setEmail: (email: string) => void
+  setPhone: (phone: string) => void
+  setAddress: (address: string) => void
+  setLink: (link: string) => void
+  setSummary: (summary: string) => void
+  setSkills: (skills: { category: string; skills: string[] }[]) => void
+  setExperience: (experience: Experience[]) => void
+  setEducation: (
+    education: {
+      degree: string
+      institution: string
+      period: string
+      location: string
+      details?: string
+    }[]
+  ) => void
+  setProjects: (
+    projects: {
+      name: string
+      description: string
+    }[]
+  ) => void
+  setCertifications: (certifications: string[]) => void
 }
 
 export const useResumeStore = create<ResumeStore>((set) => ({
